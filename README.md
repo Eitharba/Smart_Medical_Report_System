@@ -129,20 +129,20 @@ http://127.0.0.1:5000/
 
 ## 📸 Screenshots
 
-- *Home page*  
-![Screenshots/Screenshot 2026-03-28 060922.png](Screenshots/Screenshot 2026-03-28 060922.png)
+### Home Page
+![Home Page](Screenshots/Screenshot 2026-03-28 060922.png)
 
-- *Patient list*  
-![Screenshots/Screenshot 2026-03-28 061005.png](Screenshots/Screenshot 2026-03-28 061005.png)
+### Report Page
+![Report Page](Screenshots/Screenshot 2026-03-28 060945.png)
 
-- *Report page*  
-![Screenshots/Screenshot 2026-03-28 060945.png](Screenshots/Screenshot 2026-03-28 060945.png)
+### Patient List
+![Patient List](Screenshots/Screenshot 2026-03-28 061005.png)
 
-- *Edit patient*  
-![Screenshots/Screenshot 2026-03-28 061026.png](Screenshots/Screenshot 2026-03-28 061026.png)
+### Edit Patient
+![Edit Patient](Screenshots/Screenshot 2026-03-28 061026.png)
 
-- *PDF sample*  
-![Screenshots/Screenshot 2026-03-28 063120.png](Screenshots/Screenshot 2026-03-28 063120.png)
+### PDF Sample
+![PDF Sample](Screenshots/Screenshot 2026-03-28 063120.png)
 
 ---
 
@@ -164,4 +164,3 @@ AI Engineer
 ## ⭐ Support
 
 If you find this project useful, consider giving it a ⭐ on GitHub.
-```

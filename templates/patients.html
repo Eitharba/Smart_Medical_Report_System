@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Records</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #2A9D8F;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        header img {
+            vertical-align: middle;
+            height: 50px;
+        }
+        header span {
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .container {
+            width: 90%;
+            margin: 30px auto;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        th, td {
+            padding: 14px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+        th {
+            background: #2A9D8F;
+            color: white;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .btn {
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+        .btn.view {
+            background-color: #657B9D;
+        }
+        .btn.download {
+            background-color: #857B9D;
+        }
+        .btn.edit {
+            background-color: #267B9D;
+        }
+    </style>
+
+    <script>
+        function searchPatients() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const id = row.children[1].textContent.toLowerCase();
+                row.style.display = id.includes(input) ? '' : 'none';
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <img src="/static/logo.png" alt="Logo">
+        <span>Patient Report</span>
+    </header>
+
+    <div class="container">
+        <h2>Patient List</h2>
+
+        <input type="text" id="searchInput" onkeyup="searchPatients()" placeholder="Search by patient ID">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>Patient ID</th>
+                    <th>Scan Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{ rows|safe }}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

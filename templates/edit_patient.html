@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Patient</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            padding: 30px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.08);
+        }
+        h1 {
+            color: #2A9D8F;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            vertical-align: top;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+        td pre {
+            white-space: pre-wrap;
+            font-size: 13px;
+            margin: 0;
+        }
+        .thumbnail {
+            max-width: 100px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            cursor: zoom-in;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        form button {
+            background-color: #2A9D8F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .actions a {
+            background-color: #2A9D8F;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+        #modal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 9999;
+        }
+        #modal img {
+            display: block;
+            margin: 60px auto;
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+    </style>
+
+    <script>
+        function zoomImage(src) {
+            const modal = document.getElementById('modal');
+            modal.innerHTML = `<img src="${src}" onclick="closeModal()">`;
+            modal.style.display = 'block';
+        }
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</head>
+
+<body>
+    <div id="modal" onclick="closeModal()"></div>
+
+    <div class="container">
+        <h1>Edit Patient: {{ patient_id }}</h1>
+
+        <p><strong>Gender:</strong> {{ patient.gender }}</p>
+        <p><strong>Date of Birth:</strong> {{ patient.birth_date }}</p>
+        <p><strong>Current Scan:</strong> {{ patient.scan_type }} – {{ patient.scan_date }}</p>
+
+        <h2 style="color:#2A9D8F;">Previous Scans</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Diagnosis</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ scan_rows|safe }}
+            </tbody>
+        </table>
+
+        <h2 style="color:#2A9D8F; margin-top:30px;">Add New Scan</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            <label>Scan Date:</label>
+            <input type="date" name="scan_date" value="{{ today }}">
+
+            <label>Scan Type:</label>
+            <select name="scan_type" required>
+                <option value="">Select</option>
+                <option value="X-Ray">X-Ray</option>
+                <option value="CT-Scan">CT-Scan</option>
+                <option value="MRI-Scan">MRI-Scan</option>
+            </select>
+
+            <label>Upload New Image:</label>
+            <input type="file" name="image" accept="image/*" required>
+
+            <input type="hidden" name="gender" value="{{ patient.gender }}">
+            <input type="hidden" name="birth_date" value="{{ patient.birth_date }}">
+
+            <button type="submit">Upload Scan</button>
+        </form>
+
+        <div class="actions">
+            <a href="/patients">Back to Patient List</a>
+            <a href="/get_report?patient_id={{ patient_id }}" target="_blank">View Current Report</a>
+        </div>
+    </div>
+</body>
+</html>

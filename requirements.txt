@@ -1,0 +1,14 @@
+flask
+markupsafe
+pymongo
+numpy
+pillow
+scikit-image
+beautifulsoup4
+reportlab
+
+torch
+torchvision
+torchaudio
+
+git+https://github.com/mlmed/torchxrayvision

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Report for Patient {{ patient_id }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            padding: 40px;
+            color: #333;
+        }
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px 40px;
+            max-width: 900px;
+            margin: auto;
+            box-shadow: 0 0 15px rgba(0,0,0,0.08);
+        }
+        h1 {
+            text-align: center;
+            color: #2A9D8F;
+            margin-bottom: 35px;
+        }
+        .section-title {
+            font-size: 18px;
+            margin-top: 35px;
+            color: #2A9D8F;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 6px;
+        }
+        .block {
+            padding: 15px 20px;
+            border-left: 4px solid #2A9D8F;
+            margin-top: 15px;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        img {
+            display: block;
+            margin: 30px auto;
+            max-width: 500px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            cursor: zoom-in;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 10px 20px;
+            background-color: #2A9D8F;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        #imageModal img {
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            display: block;
+            margin-top: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Radiology Report</h1>
+
+        <div class="section-title">Patient Information</div>
+        <div class="block">
+            <p><b>Patient ID:</b> {{ report.patient_id }}</p>
+            <p><b>Gender:</b> {{ report.gender }}</p>
+            <p><b>Birth Date:</b> {{ report.birth_date }}</p>
+            <p><b>Age:</b> {{ age }} years</p>
+            <p><b>Scan Type:</b> {{ report.scan_type }}</p>
+            <p><b>Scan Date:</b> {{ report.scan_date }}</p>
+        </div>
+
+        <div class="section-title">AI Diagnosis</div>
+        <div class="block">{{ report.report|safe }}</div>
+
+        <div class="section-title">Final Diagnosis</div>
+        <div class="block">{{ final_diagnosis }}</div>
+
+        {{ alert_block|safe }}
+        {{ followup_block|safe }}
+
+        <div class="section-title">Scan Image</div>
+        <img src="{{ report.image_path }}" onclick="zoomImage(this.src)">
+
+        <a href="/download_report?patient_id={{ report.patient_id }}" target="_blank" class="button">Download PDF Report</a>
+    </div>
+
+    {{ previous_scans_block|safe }}
+
+    <div id="imageModal" onclick="closeModal()">
+        <img id="modalImg" src="" alt="Enlarged Image">
+    </div>
+
+    <script>
+        function zoomImage(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = src;
+            modal.style.display = 'block';
+        }
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

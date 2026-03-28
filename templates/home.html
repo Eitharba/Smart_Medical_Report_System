@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Medical Report System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f2f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2A9D8F;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        header img {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            margin: 10px 0;
+            font-size: 26px;
+        }
+        header p {
+            margin: 0;
+            font-size: 14px;
+            color: #d2f4ed;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        h2 {
+            color: #264653;
+            margin-bottom: 20px;
+        }
+        form input,
+        form select,
+        form button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        form button {
+            background-color: #2A9D8F;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #21867a;
+        }
+        .nav-buttons {
+            margin-top: 20px;
+        }
+        .nav-buttons a {
+            text-decoration: none;
+            background-color: #2A9D8F;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 5px;
+        }
+        .nav-buttons a:hover {
+            background-color: #21867a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/static/logo.png" alt="Logo">
+        <h1>Smart Medical Report</h1>
+        <p>AI-powered diagnosis and patient record management</p>
+    </header>
+
+    <div class="container">
+        <h2>Upload Medical Scan</h2>
+        <form action="/upload" method="POST" enctype="multipart/form-data" target="_blank">
+            <input type="text" name="patient_id" placeholder="Patient ID" required>
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label style="text-align:left; display:block; font-weight:bold; margin-bottom:5px;">
+                Date of Birth <span style="color:#999; font-weight:normal;">(e.g. 1995-06-15)</span>
+            </label>
+            <input type="date" name="birth_date" required>
+
+            <label style="text-align:left; display:block; font-weight:bold; margin-bottom:5px;">
+                Scan Type
+            </label>
+            <select name="scan_type" required>
+                <option value="">Select Scan Type</option>
+                <option value="X-Ray">X-Ray</option>
+                <option value="CT-Scan">CT-Scan</option>
+                <option value="MRI-Scan">MRI-Scan</option>
+            </select>
+
+            <label style="text-align:left; display:block; font-weight:bold; margin-bottom:5px;">
+                Upload Image <span style="color:#999; font-weight:normal;">(e.g. .jpg)</span>
+            </label>
+            <input type="file" name="image" accept="image/*" required>
+
+            <button type="submit">Upload and Analyze</button>
+        </form>
+
+        <div class="nav-buttons">
+            <a href="/patients" target="_blank">View Patient List</a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", () => {
+            const toast = document.createElement("div");
+            toast.textContent = "✅ Report uploaded successfully. It opened in a new tab.";
+            toast.style.position = "fixed";
+            toast.style.bottom = "30px";
+            toast.style.right = "30px";
+            toast.style.padding = "16px 24px";
+            toast.style.backgroundColor = "#2A9D8F";
+            toast.style.color = "#fff";
+            toast.style.fontWeight = "bold";
+            toast.style.borderRadius = "8px";
+            toast.style.boxShadow = "0 4px 12px rgba(0,0,0,0.1)";
+            toast.style.zIndex = "9999";
+            toast.style.opacity = "1";
+            toast.style.transition = "opacity 0.5s ease-out";
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                setTimeout(() => document.body.removeChild(toast), 500);
+            }, 3500);
+        });
+    </script>
+</body>
+</html>

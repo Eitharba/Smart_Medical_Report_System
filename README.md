@@ -130,19 +130,19 @@ http://127.0.0.1:5000/
 ## 📸 Screenshots
 
 ### Home Page
-![Home Page](Screenshots/Screenshot-2026-03-28 060922.png)
+![Home Page](Screenshots/Screenshot-2026-03-28%20060922.png)
 
 ### Report Page
-![Report Page](Screenshots/Screenshot-2026-03-28 060945.png)
+![Report Page](Screenshots/Screenshot-2026-03-28%20060945.png)
 
 ### Patient List
-![Patient List](Screenshots/Screenshot-2026-03-28 061005.png)
+![Patient List](Screenshots/Screenshot-2026-03-28%20061005.png)
 
 ### Edit Patient
-![Edit Patient](Screenshots/Screenshot-2026-03-28 061026.png)
+![Edit Patient](Screenshots/Screenshot-2026-03-28%20061026.png)
 
 ### PDF Sample
-![PDF Sample](Screenshots/Screenshot-2026-03-28 063120.png)
+![PDF Sample](Screenshots/Screenshot-2026-03-28%20063120.png)
 
 ---
 
